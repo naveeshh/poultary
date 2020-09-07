@@ -1,5 +1,7 @@
 from src.setup import app
 from src.views.customers import *
+from src.views.orders import *
+
 
 
 if __name__=='__main__':
