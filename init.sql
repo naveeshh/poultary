@@ -10,7 +10,7 @@ create table products(
 
 
 create table Orderdetails(
-    orderdetails_id  serial primary key  not null,
+  orderdetails_id  serial primary key  not null,
 	product_id int references products(product_id),
 	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 	modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),

@@ -18,7 +18,7 @@ def createorder():
 
 
 @app.route('/deleteorder/<int:order_id>',methods=['DELETE'])
-def delete_user(order_id):
+def delete_order(order_id):
     Orders.query.filter(Orders.order_id == order_id).delete()
     db.session.commit()
     return '', 204

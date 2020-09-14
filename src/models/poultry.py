@@ -14,7 +14,7 @@ class Customers(db.Model):
     customer_id = db.Column(db.Integer, primary_key=True)
     customer_name = db.Column(db.String(80), unique=True, nullable=False)
     customer_address = db.Column(db.String(120), unique=True, nullable=False)
-    customer_ph_num = db.Column(db.Long, nullable=False)
+    customer_ph_num = db.Column(db.Integer, nullable=False)
     customer_details = db.Column(db.String(120), unique=True, nullable=True)
     work_area = db.Column(db.String(120), unique=True, nullable=False)
     created_at = db.Column(DateTime, default=datetime.datetime.utcnow)

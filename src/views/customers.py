@@ -32,17 +32,17 @@ def delete_user(customer_id):
 #     db.session.commit()
 #     return "successfully deleted"
 
-@app.route('/')
-def index():
-    # x = Customer(customer_name='dad1', customer_adress='miltary', work_aera='miltary2')
-    # db.session.add(x)
-    # db.session.commit()
-    # a = Customer.query.all()
-    # for i in a:
-    #     print(i)
-    #     print(type(i))
-    #     print(i.customer_name)
-    return 'index'
+# @app.route('/')
+# def index():
+#     # x = Customer(customer_name='dad1', customer_adress='miltary', work_aera='miltary2')
+#     # db.session.add(x)
+#     # db.session.commit()
+#     # a = Customer.query.all()
+#     # for i in a:
+#     #     print(i)
+#     #     print(type(i))
+#     #     print(i.customer_name)
+#     return 'index'
 
 @app.route('/login', methods=['POST'])
 def login():
