@@ -1,3 +1,15 @@
+create table customers(
+    customer_id serial primary key,
+    customer_name character varying NOT NULL,
+	customer_address character varying NOT NULL,
+    customer_ph_num int not null,
+    customer_details character varying not null,
+	work_area character varying not null,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    modified_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    is_deleted BOOL DEFAULT 'f'
+);
+
 create table products(
     product_id serial primary key,
     product_name character varying NOT NULL,
