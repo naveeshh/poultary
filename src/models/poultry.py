@@ -2,7 +2,7 @@ import datetime
 
 from sqlalchemy import DateTime
 
-from service import db
+from src.setup import db
 
 # @as_declarative()
 # class Base:
