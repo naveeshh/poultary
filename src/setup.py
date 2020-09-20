@@ -1,18 +1,47 @@
 from flask import Flask
+from flask_cors import CORS
+
+from flask import jsonify
+from flask_swagger import swagger
+from flask_swagger_ui import get_swaggerui_blueprint
+
+
 from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
 from src.views.customers import cust
 
-app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:/Users/Naveesh/Downloads/dbdatatest.db'
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:qwerty123@localhost:5432/poultry"
+def create_app():
+    """ provides flask app instance"""
+    # flask app instantiation
+    app = Flask(__name__)
 
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
+    # cross origin resource sharing
+    CORS(app)
+    app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/poultry"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.add_url_rule("/user", methods=['GET','POST'], view_func=cust)
 
-db = SQLAlchemy(app)
+    db.init_app(app)
 
-db.create_all()
+    from src.views.orders import orders
+    app.register_blueprint(orders)
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=1234, debug=True)
+    app.add_url_rule("/customers", methods=['GET'], view_func=cust)
+
+    # Swagger setup
+    swaggerui_blueprint = get_swaggerui_blueprint("/swagger", "http://localhost:1234/spec")
+    app.register_blueprint(swaggerui_blueprint, url_prefix="/swagger")
+
+    @app.route("/spec")
+    def spec():
+        swag = swagger(app)
+        swag['info']['version'] = "1.0"
+        swag['info']['title'] = "My Poultry API"
+        return jsonify(swag)
+
+    return app
+
+
+

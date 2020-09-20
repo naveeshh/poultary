@@ -1,7 +1,6 @@
 import datetime
 
 from sqlalchemy import DateTime
-
 from src.setup import db
 
 # @as_declarative()
